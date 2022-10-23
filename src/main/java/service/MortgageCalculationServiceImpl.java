@@ -22,7 +22,7 @@ private final RateCalculationService rateCalculationService;
     public void calculate(InputData inputData) {
         PrintingService printingService=new PrintingServiceImpl();
         printingService.printInputDataInfo(inputData);
-        List<Rate> calculate = rateCalculationService.calculate(inputData);
+        List<Rate> rates = rateCalculationService.calculate(inputData);
 
     }
 

@@ -6,6 +6,7 @@ public class RateAmounts {
     private final BigDecimal rateAmount;
 
     private final BigDecimal interestAmount;
+
     private final BigDecimal capitalAmount;
 
     public RateAmounts(BigDecimal rateAmount, BigDecimal interestAmount, BigDecimal capitalAmount) {

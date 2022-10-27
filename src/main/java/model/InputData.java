@@ -32,7 +32,7 @@ public class InputData {
         this.monthDuration=monthDuration;
         return this;
     }
-    public InputData withRapaType(RateType rateType){
+    public InputData withRateType(RateType rateType){
         this.rateType=rateType;
         return this;
     }
@@ -45,9 +45,11 @@ public class InputData {
     public LocalDate getRepaymentStartDate() {
         return repaymentStartDate;
     }
+
     public BigDecimal getAmount() {
         return amount;
     }
+
     public BigDecimal getMonthDuration() {
         return monthDuration;
     }
@@ -55,13 +57,13 @@ public class InputData {
     public RateType getRateType() {
         return rateType;
     }
+
     public BigDecimal getInterestPercent() {
-        return wiborPercent.add(bankMarginPercent.divide(PERCENT,10, RoundingMode.HALF_UP));
+        return wiborPercent.add(bankMarginPercent).divide(PERCENT,4, RoundingMode.HALF_UP);
     }
     public BigDecimal getInterestDisplay() {
         return wiborPercent.add(bankMarginPercent).setScale(2,RoundingMode.HALF_UP);
     }
-
 
 
 

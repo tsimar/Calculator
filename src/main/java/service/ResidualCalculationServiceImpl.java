@@ -7,13 +7,14 @@ import model.RateAmounts;
 
 import java.math.BigDecimal;
 
-public class ResidualCalculationServiceImpl implements RasidualCalculationService{
+public class ResidualCalculationServiceImpl implements RasidualCalculationService {
     @Override
     public MortgageResidual calculate(RateAmounts rateAmounts, InputData inputData) {
-        BigDecimal residualAmount=inputData.getAmount().subtract(rateAmounts.getCapitalAmount());
-        BigDecimal residualDuration=inputData.getMonthDuration().subtract(BigDecimal.ONE);
 
-        return new MortgageResidual(residualAmount,residualDuration);
+        BigDecimal residualAmount = inputData.getAmount().subtract(rateAmounts.getCapitalAmount()).max(BigDecimal.ZERO);
+        BigDecimal residualDuration = inputData.getMonthDuration().subtract(BigDecimal.ONE);
+
+        return new MortgageResidual(residualAmount, residualDuration);
     }
 
     @Override
@@ -21,8 +22,8 @@ public class ResidualCalculationServiceImpl implements RasidualCalculationServic
         MortgageResidual residual = previousRate.getMortgageResidual();
 
 
-        BigDecimal residualAmount= residual.getAmount().subtract(rateAmounts.getCapitalAmount());
-        BigDecimal residualDuration=  residual.getDuration().subtract(BigDecimal.ONE);
-        return new MortgageResidual(residualAmount,residualDuration);
+        BigDecimal residualAmount = residual.getAmount().subtract(rateAmounts.getCapitalAmount()).max(BigDecimal.ZERO);
+        BigDecimal residualDuration = residual.getDuration().subtract(BigDecimal.ONE);
+        return new MortgageResidual(residualAmount, residualDuration);
     }
 }

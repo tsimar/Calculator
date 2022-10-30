@@ -1,4 +1,5 @@
 import model.InputData;
+import model.Overpayment;
 import model.RateType;
 import service.*;
 
@@ -10,9 +11,10 @@ public class Main {
 
     public static void main(String[] args) {
         InputData inputData = new InputData()
-                .withAmount(new BigDecimal("298000"))
+                .withAmount(new BigDecimal("300 000"))
                 .withMonthDuration(BigDecimal.valueOf(360))
-                .withRateType(RateType.CONSTANT);
+                .withRateType(RateType.CONSTANT)
+                .withOverpaymentReduceWay(Overpayment.REDUCE_RATE);
 
         PrintingService printingService = new PrintingServiceImpl();
         RateCalculationService rateCalculationService= new RateCalculationServiceImpl(

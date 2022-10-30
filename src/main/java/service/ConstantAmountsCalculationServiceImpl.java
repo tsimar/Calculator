@@ -39,8 +39,8 @@ public class ConstantAmountsCalculationServiceImpl implements ConstantAmountsCal
         BigDecimal q = calculateQ(interestPercent);
 
         BigDecimal residualAmount = previousRate.getMortgageResidual().getAmount();
-        BigDecimal referenceAmount = inputData.getAmount();
-        BigDecimal referenceDuration = inputData.getMonthDuration();
+        BigDecimal referenceAmount = previousRate.getMortgageReference().getAmount();
+        BigDecimal referenceDuration = previousRate.getMortgageReference().getDuration();
 
         BigDecimal interestAmount = calculateInterestAmount(residualAmount, interestPercent);
         BigDecimal rateAmount = calculateConstantRateAmount(q, referenceAmount, referenceDuration, interestAmount, residualAmount);
